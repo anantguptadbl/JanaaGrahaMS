@@ -45,10 +45,12 @@ var app = {
 		});
 
 		var row = [];
-		var fileEntryVar = null;
+		var rowLabel = [];
+		var fileEntryData = null;
+		var fileEntryLabel = null;
 
-		function writeFile(dataObj) {
-			fileEntryVar.createWriter(function (fileWriter) {
+		function writeFile(fileEntry,dataObj) {
+			fileEntry.createWriter(function (fileWriter) {
 				fileWriter.onwriteend = function() {
 				    console.log("Successful file write...");
 				};
@@ -66,16 +68,18 @@ var app = {
 			});
 		}
 
-		function createFile(dirEntry, fileName) {
+		function createFile(dirEntry, fileName, isData) {
 			dirEntry.getFile(fileName, {create: true, exclusive: false}, function(fileEntry) {
-				fileEntryVar = fileEntry;
+				if(isData == 1){fileEntryData = fileEntry;}
+				else{fileEntryLabel = fileEntry;}
 				console.log('file created/get');
 			}, onError);
 		}
 
 		window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (dirEntry) {
 			console.log('file system open: ' + dirEntry.name);
-			createFile(dirEntry, "mydata.txt");
+			createFile(dirEntry, "mydata.txt",1);
+			createFile(dirEntry, "myLabel.txt",0);
 		}, onError);
 
 
@@ -98,7 +102,7 @@ var app = {
 			row.push("\n");
 			console.log(row);
 			dataObj = new Blob(row, { type: 'text/plain' });
-			writeFile(dataObj);
+			writeFile(fileEntryData,dataObj);
 			row = [];
 		};
 
@@ -139,7 +143,40 @@ var app = {
 			if(row.length == 0){
 				window.addEventListener("devicemotion",recordMotionEvent, true);
 			}
-		}, 10000);
+		}, 3000);
+
+                var recordGpsEventLabel = function(position) {
+                        rowLabel.push(Math.round(position.coords.latitude));
+                        rowLabel.push(",");
+                        rowLabel.push(Math.round(position.coords.longitude));
+                        rowLabel.push(",");
+                        rowLabel.push(Math.round(position.coords.altitude));
+                        rowLabel.push(",");
+                        rowLabel.push(Math.round(position.coords.accuracy));
+                        rowLabel.push(",");
+                        rowLabel.push(Math.round(position.coords.altitudeAccuracy));
+                        rowLabel.push(",");
+                        rowLabel.push(Math.round(position.coords.heading));
+                        rowLabel.push(",");
+                        rowLabel.push(Math.round(position.coords.speed));
+                        rowLabel.push(",");
+                        rowLabel.push(Math.round(position.timestamp));
+                        rowLabel.push("\n");
+                        console.log(rowLabel);
+                        dataObj = new Blob(rowLabel, { type: 'text/plain' });
+                        writeFile(fileEntryLabel,dataObj);
+                        rowLabel = [];
+                };
+
+		function recordLabel(info){
+			if(rowLabel.length == 0){
+				console.log("Marking Label");
+				var options = { enableHighAccuracy: true };
+	                        navigator.geolocation.getCurrentPosition(recordGpsEventLabel,onError, options);
+			}
+		}
+		HeadsetButtons.subscribe(recordLabel);
+
     },
 
     // Update DOM on a Received Event

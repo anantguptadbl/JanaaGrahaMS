@@ -30,13 +30,23 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
 		window.addEventListener("compassneedscalibration",function(event) {
-			  // ask user to wave device in a figure-eight motion .   
+			  // ask user to wave device in a figure-eight motion
 			  event.preventDefault();
 		}, true);
-		
+
+		cordova.plugins.backgroundMode.enable();
+		cordova.plugins.backgroundMode.overrideBackButton();
+		cordova.plugins.backgroundMode.setDefaults({
+    			title = "MS Janagrah Data Collection"
+			text = "Data is being collected ...",
+		});
+		cordova.plugins.backgroundMode.on('activate', function() {
+			cordova.plugins.backgroundMode.disableWebViewOptimizations();
+		});
+
 		var row = [];
 		var fileEntryVar = null;
-		
+
 		function writeFile(dataObj) {
 			fileEntryVar.createWriter(function (fileWriter) {
 				fileWriter.onwriteend = function() {
@@ -62,7 +72,7 @@ var app = {
 				console.log('file created/get');
 			}, onError);
 		}
-		
+
 		window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (dirEntry) {
 			console.log('file system open: ' + dirEntry.name);
 			createFile(dirEntry, "mydata.txt");
@@ -91,7 +101,7 @@ var app = {
 			writeFile(dataObj);
 			row = [];
 		};
-		
+
 		function onError(error) {
 		    row.push(Math.round(error.code));
 		    row.push(Math.round(error.message));
@@ -111,7 +121,7 @@ var app = {
 			row.push(",");
 			row.push(Math.round(event.accelerationIncludingGravity.y));
 			row.push(",");
-			row.push(Math.round(event.accelerationIncludingGravity.z));		
+			row.push(Math.round(event.accelerationIncludingGravity.z));
 			row.push(",");
 			row.push(Math.round(event.rotationRate.alpha));
 			row.push(",");
@@ -124,14 +134,12 @@ var app = {
 			console.log("Removing motion event");
 			window.removeEventListener("devicemotion",recordMotionEvent, true);
 		}
-		
+
 		window.setInterval(function(){
 			if(row.length == 0){
 				window.addEventListener("devicemotion",recordMotionEvent, true);
 			}
 		}, 10000);
-		
-
     },
 
     // Update DOM on a Received Event

@@ -46,5 +46,13 @@
     },
     "is_top_level": false,
     "variables": {}
+  },
+  "cordova-plugin-headset-buttons": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-headset-buttons"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

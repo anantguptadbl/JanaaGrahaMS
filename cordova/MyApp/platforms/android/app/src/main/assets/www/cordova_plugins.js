@@ -203,6 +203,14 @@ module.exports = [
       "cordova.plugins.backgroundMode",
       "plugin.backgroundMode"
     ]
+  },
+  {
+    "id": "cordova-plugin-headset-buttons.headsetbuttons",
+    "file": "plugins/cordova-plugin-headset-buttons/www/headsetbuttons.js",
+    "pluginId": "cordova-plugin-headset-buttons",
+    "clobbers": [
+      "HeadsetButtons"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -213,7 +221,8 @@ module.exports.metadata =
   "cordova-plugin-geolocation": "4.0.1",
   "cordova-plugin-file": "6.0.1",
   "cordova-plugin-device": "2.0.2",
-  "cordova-plugin-background-mode": "0.7.2"
+  "cordova-plugin-background-mode": "0.7.2",
+  "cordova-plugin-headset-buttons": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

@@ -39,6 +39,10 @@
             {
               "xml": "<preference name=\"AndroidLaunchMode\" value=\"singleInstance\" />",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"HeadsetButtons\"><param name=\"android-package\" value=\"com.jobr3255.headsetbuttons.HeadsetButtonsListener\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -96,6 +100,9 @@
       "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-plugin-background-mode": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-plugin-headset-buttons": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
@@ -304,6 +311,14 @@
         "cordova.plugins.backgroundMode",
         "plugin.backgroundMode"
       ]
+    },
+    {
+      "id": "cordova-plugin-headset-buttons.headsetbuttons",
+      "file": "plugins/cordova-plugin-headset-buttons/www/headsetbuttons.js",
+      "pluginId": "cordova-plugin-headset-buttons",
+      "clobbers": [
+        "HeadsetButtons"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -312,6 +327,7 @@
     "cordova-plugin-geolocation": "4.0.1",
     "cordova-plugin-file": "6.0.1",
     "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-background-mode": "0.7.2"
+    "cordova-plugin-background-mode": "0.7.2",
+    "cordova-plugin-headset-buttons": "1.0.0"
   }
 }
