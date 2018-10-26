@@ -1,4 +1,4 @@
-#Sun Oct 21 18:49:58 IST 2018
-base.0=/home/hitesh/MyApp/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+#Fri Oct 26 10:04:13 UTC 2018
+base.0=C\:\\janagraha\\cordova\\MyApp\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

@@ -22,10 +22,12 @@ apply plugin: 'com.android.application'
 buildscript {
     repositories {
         mavenCentral()
+        google()
+        jcenter()
         maven {
             url "https://maven.google.com"
         }
-        jcenter()
+        jcenter { url "http://jcenter.bintray.com/"}
     }
 
     dependencies {
@@ -37,7 +39,7 @@ buildscript {
 allprojects {
     repositories {
         mavenCentral();
-        jcenter()
+        jcenter { url "http://jcenter.bintray.com/"}
     }
 }
 

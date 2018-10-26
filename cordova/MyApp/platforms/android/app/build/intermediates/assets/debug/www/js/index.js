@@ -30,15 +30,17 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
 		window.addEventListener("compassneedscalibration",function(event) {
-			  // ask user to wave device in a figure-eight motion .   
+			  // ask user to wave device in a figure-eight motion
 			  event.preventDefault();
 		}, true);
-		
+
 		var row = [];
-		var fileEntryVar = null;
-		
-		function writeFile(dataObj) {
-			fileEntryVar.createWriter(function (fileWriter) {
+		var rowLabel = [];
+		var fileEntryData = null;
+		var fileEntryLabel = null;
+
+		function writeFile(fileEntry,dataObj) {
+			fileEntry.createWriter(function (fileWriter) {
 				fileWriter.onwriteend = function() {
 				    console.log("Successful file write...");
 				};
@@ -52,85 +54,127 @@ var app = {
 			    catch (e) {
 			        console.log("file doesn't exist!");
 			    }
+				console.log("writing to file");
 				fileWriter.write(dataObj);
 			});
 		}
 
-		function createFile(dirEntry, fileName) {
+		function createFile(dirEntry, fileName, isData) {
 			dirEntry.getFile(fileName, {create: true, exclusive: false}, function(fileEntry) {
-				fileEntryVar = fileEntry;
+				if(isData == 1){fileEntryData = fileEntry;}
+				else{fileEntryLabel = fileEntry;}
 				console.log('file created/get');
 			}, onError);
 		}
-		
+
 		window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function (dirEntry) {
 			console.log('file system open: ' + dirEntry.name);
-			createFile(dirEntry, "mydata.txt");
+			createFile(dirEntry, "mydata.txt",1);
+			createFile(dirEntry, "myLabel.txt",0);
 		}, onError);
 
 
 		var recordGpsEvent = function(position) {
-			row.push(Math.round(position.coords.latitude));
+			console.log("Recording GPS");
+			row.push(position.coords.latitude);
 			row.push(",");
-			row.push(Math.round(position.coords.longitude));
+			row.push(position.coords.longitude);
 			row.push(",");
-			row.push(Math.round(position.coords.altitude));
+			row.push(position.coords.altitude);
 			row.push(",");
-			row.push(Math.round(position.coords.accuracy));
+			row.push(position.coords.accuracy);
 			row.push(",");
-			row.push(Math.round(position.coords.altitudeAccuracy));
+			row.push(position.coords.altitudeAccuracy);
 			row.push(",");
-			row.push(Math.round(position.coords.heading));
+			row.push(position.coords.heading);
 			row.push(",");
-			row.push(Math.round(position.coords.speed));
+			row.push(position.coords.speed);
 			row.push(",");
-			row.push(Math.round(position.timestamp));
+			row.push(position.timestamp);
 			row.push("\n");
 			console.log(row);
 			dataObj = new Blob(row, { type: 'text/plain' });
-			writeFile(dataObj);
+			writeFile(fileEntryData,dataObj);
 			row = [];
 		};
-		
+
 		function onError(error) {
-		    row.push(Math.round(error.code));
-		    row.push(Math.round(error.message));
+		    row.push(error.code);
+		    row.push(error.message);
 			console.log(row);
 		    row = [];
 		}
 
 
 		function recordMotionEvent(event) {
-			row.push(Math.round(event.acceleration.x));
+			row.push(event.acceleration.x);
 			row.push(",");
-			row.push(Math.round(event.acceleration.y));
+			row.push(event.acceleration.y);
 			row.push(",");
-			row.push(Math.round(event.acceleration.z));
+			row.push(event.acceleration.z);
 			row.push(",");
-			row.push(Math.round(event.accelerationIncludingGravity.x));
+			row.push(event.accelerationIncludingGravity.x);
 			row.push(",");
-			row.push(Math.round(event.accelerationIncludingGravity.y));
+			row.push(event.accelerationIncludingGravity.y);
 			row.push(",");
-			row.push(Math.round(event.accelerationIncludingGravity.z));		
+			row.push(event.accelerationIncludingGravity.z);
 			row.push(",");
-			row.push(Math.round(event.rotationRate.alpha));
+			row.push(event.rotationRate.alpha);
 			row.push(",");
-			row.push(Math.round(event.rotationRate.beta));
+			row.push(event.rotationRate.beta);
 			row.push(",");
-			row.push(Math.round(event.rotationRate.gamma));
+			row.push(event.rotationRate.gamma);
 			row.push(",");
 			var options = { enableHighAccuracy: true };
 			navigator.geolocation.getCurrentPosition(recordGpsEvent,onError, options);
 			console.log("Removing motion event");
 			window.removeEventListener("devicemotion",recordMotionEvent, true);
 		}
-		
+
 		window.setInterval(function(){
+			console.log("GPS Loop");
 			if(row.length == 0){
 				window.addEventListener("devicemotion",recordMotionEvent, true);
 			}
-		}, 10000);
-		
+		}, 3000);
+
+                var recordGpsEventLabel = function(position) {
+                		console.log("getting gps data for label");
+                        rowLabel.push(position.coords.latitude);
+                        rowLabel.push(",");
+                        rowLabel.push(position.coords.longitude);
+                        rowLabel.push(",");
+                        rowLabel.push(position.coords.altitude);
+                        rowLabel.push(",");
+                        rowLabel.push(position.coords.accuracy);
+                        rowLabel.push(",");
+                        rowLabel.push(position.coords.altitudeAccuracy);
+                        rowLabel.push(",");
+                        rowLabel.push(position.coords.heading);
+                        rowLabel.push(",");
+                        rowLabel.push(position.coords.speed);
+                        rowLabel.push(",");
+                        rowLabel.push(position.timestamp);
+                        rowLabel.push("\n");
+                        console.log(rowLabel);
+                        dataObj = new Blob(rowLabel, { type: 'text/plain' });
+                        writeFile(fileEntryLabel,dataObj);
+                        rowLabel = [];
+                };
+
+		function recordLabel(info){
+			if(rowLabel.length == 0){
+				console.log("Marking Label");
+				navigator.notification.beep(1);
+				var options = { enableHighAccuracy: true };
+	                        navigator.geolocation.getCurrentPosition(recordGpsEventLabel,onError, options);
+			}
+		}
+		HeadsetButtons.subscribe(recordLabel);
+
+		HeadsetButtons.start();
+
+		window.plugins.insomnia.keepAwake();
 
     },
 

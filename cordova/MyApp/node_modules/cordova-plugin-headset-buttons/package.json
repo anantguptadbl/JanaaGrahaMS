@@ -1,0 +1,100 @@
+{
+  "_args": [
+    [
+      "cordova-plugin-headset-buttons",
+      "/home/ubuntu/JanaaGrahaMS/cordova/MyApp"
+    ]
+  ],
+  "_from": "cordova-plugin-headset-buttons@latest",
+  "_id": "cordova-plugin-headset-buttons@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/cordova-plugin-headset-buttons",
+  "_nodeVersion": "8.10.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-headset-buttons_1.0.0_1533070423990_0.7537554735347816"
+  },
+  "_npmUser": {
+    "email": "jobr3255@colorado.edu",
+    "name": "jobr3255"
+  },
+  "_npmVersion": "6.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "cordova-plugin-headset-buttons",
+    "raw": "cordova-plugin-headset-buttons",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-headset-buttons/-/cordova-plugin-headset-buttons-1.0.0.tgz",
+  "_shasum": "40f49d809dfd10d53bedbb9d7897daba1db05013",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-headset-buttons",
+  "_where": "/home/ubuntu/JanaaGrahaMS/cordova/MyApp",
+  "author": {
+    "email": "jobr3255@colorado.edu",
+    "name": "Josh Brown"
+  },
+  "bugs": {
+    "url": "https://github.com/jobr3255/cordova-plugin-headset-buttons/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-headset-buttons",
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "description": "An Android Cordova plugin that allows users to map headset buttons.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "fileCount": 5,
+    "integrity": "sha512-20RDYtMotgTiMhMdn4VisDVx8xVbz5J0E27LIgiG9kLeMj6iikLNI+NU0Jn91iqIXpI5MM+vHvEbadqJLymNLw==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJbYMxYCRA9TVsSAnZWagAAY9EP/jdtlio1j9FWT2dDPB9G\nbsOKmAnGxWLaBuuYyjnYd7FjrdNz2YRy0XkD56CU8uU8loU3mgk7Enebnn87\nW35D3sOGbLUXy53qp64SS0i7j9CAqW4bUAkScaSTqF1+9+yjKnX4AkhxliQM\ncf4S/TZ1kAggugAufCchoBlMcLZi36n02iKkWrXgBlQ2zVqtFNgMZkI40XdP\nqARM8QnS7vqO6NneYpUMVjTyrIWdw0OrvHtGnIQnqxl4uh+kEdcz2q6VUo4z\nXvxUZZJ56kRRD7eLAuqsmkXpFt+wqulTGW7udy8sfzBrApZkRzjPzERhWDlt\nv4BDFaiFkqkbxxfzqKLU4WImC/QVTIr+2hFYlzLatP7gdx+rxkIkBVRRpa2E\n1F1i8GIrRDRlB52g4+JXCMy322bxdTq/Bq1OWEEgEEKEKkdNs4hSrqmdPatf\n3BfOV8b0FQlWz+JjH1FC4+/Kp2pQIgLbOplzITkGw0JiqgfBj1MwFDzmo9GG\naPxFqfnQIxnDsNvPAG7qEyLgj3hweXhTjT44DvBvsKIfqHd7iX6ZqLvjvh2w\nW9OogpOLmvf10Zj6/7hKZupikY+oQJb7JDBOK/pXvZrRVejIII1knRJWfqcA\nW2bOKWfC8LieesfmLxSTyfoZLSNHj4hVTvdsKAZHKisD++VN1iJOu3/D/3je\neU0e\r\n=57Fn\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "40f49d809dfd10d53bedbb9d7897daba1db05013",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-headset-buttons/-/cordova-plugin-headset-buttons-1.0.0.tgz",
+    "unpackedSize": 9345
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "gitHead": "85f705b5eb81f86d82435f3ce0b75e46819d694d",
+  "homepage": "https://github.com/jobr3255/cordova-plugin-headset-buttons/blob/master/README.md",
+  "keywords": [
+    "Alert",
+    "Message",
+    "Notification",
+    "Toast",
+    "cordova-android",
+    "ecosystem:cordova"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "jobr3255",
+      "email": "jobr3255@colorado.edu"
+    }
+  ],
+  "name": "cordova-plugin-headset-buttons",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobr3255/cordova-plugin-headset-buttons.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}
