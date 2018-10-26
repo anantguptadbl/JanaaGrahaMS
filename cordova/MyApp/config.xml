@@ -26,7 +26,8 @@
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
-    <engine name="android" spec="^7.1.1" />
     <plugin name="cordova-plugin-headset-buttons" spec="^1.0.0" />
+    <plugin name="cordova-plugin-insomnia" spec="https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git" />
+    <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
+    <engine name="android" spec="^7.1.1" />
 </widget>

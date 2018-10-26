@@ -188,28 +188,35 @@ module.exports = [
     "runs": true
   },
   {
-    "id": "cordova-plugin-device.device",
-    "file": "plugins/cordova-plugin-device/www/device.js",
-    "pluginId": "cordova-plugin-device",
-    "clobbers": [
-      "device"
-    ]
-  },
-  {
-    "id": "cordova-plugin-background-mode.BackgroundMode",
-    "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
-    "pluginId": "cordova-plugin-background-mode",
-    "clobbers": [
-      "cordova.plugins.backgroundMode",
-      "plugin.backgroundMode"
-    ]
-  },
-  {
     "id": "cordova-plugin-headset-buttons.headsetbuttons",
     "file": "plugins/cordova-plugin-headset-buttons/www/headsetbuttons.js",
     "pluginId": "cordova-plugin-headset-buttons",
     "clobbers": [
       "HeadsetButtons"
+    ]
+  },
+  {
+    "id": "cordova-plugin-insomnia.Insomnia",
+    "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
+    "pluginId": "cordova-plugin-insomnia",
+    "clobbers": [
+      "window.plugins.insomnia"
+    ]
+  },
+  {
+    "id": "cordova-plugin-dialogs.notification",
+    "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+    "pluginId": "cordova-plugin-dialogs",
+    "merges": [
+      "navigator.notification"
+    ]
+  },
+  {
+    "id": "cordova-plugin-dialogs.notification_android",
+    "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+    "pluginId": "cordova-plugin-dialogs",
+    "merges": [
+      "navigator.notification"
     ]
   }
 ];
@@ -220,9 +227,9 @@ module.exports.metadata =
   "cordova-plugin-console": "1.1.0",
   "cordova-plugin-geolocation": "4.0.1",
   "cordova-plugin-file": "6.0.1",
-  "cordova-plugin-device": "2.0.2",
-  "cordova-plugin-background-mode": "0.7.2",
-  "cordova-plugin-headset-buttons": "1.0.0"
+  "cordova-plugin-headset-buttons": "1.0.0",
+  "cordova-plugin-insomnia": "4.3.0",
+  "cordova-plugin-dialogs": "2.0.1"
 };
 // BOTTOM OF METADATA
 });
